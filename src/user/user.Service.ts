@@ -4,21 +4,17 @@ import { User} from  "@prisma/client"
 
 
 @Injectable()
-export class RegisterService{
+export class UserService{
 
     constructor(
         private prisma: PrismaService){}
     
 
     async createUser(data: User): Promise<User>{
-
+        data['role_id'] = 1 
         return this.prisma.user.create({
             data
         })
-    }
-
-    async getAllUsers(): Promise<User[]>{
-        return this.prisma.user.findMany()
     }
 }
 
