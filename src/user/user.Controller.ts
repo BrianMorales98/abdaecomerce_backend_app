@@ -1,19 +1,31 @@
-
+// Importaciones de módulos y servicios necesarios
 import { Body, Controller, Post } from "@nestjs/common";
-import { UserService } from "./user.Service";
+import { UserService } from "./user.service";
 import { User } from "@prisma/client";
+import * as bcrypt from 'bcrypt'
 
-@Controller('user') //Endpoint 
+// Decorador @Controller define la ruta base para las rutas manejadas por este controlador
+@Controller('api') 
 export class UserController {
 
-    constructor(
-        private readonly registerService: UserService
-        
-        ) {}
+    // Constructor del controlador que inyecta el servicio necesario para manejar el registro de usuarios
+    constructor(private readonly UserService: UserService) {}
 
+    // Decorador @Post define una ruta POST para manejar el registro de usuarios
     @Post('register')
-    async createUser(@Body() data: User) {
-        console.log(data)
-        return this.registerService.createUser(data);
+    // Método para manejar la solicitud de registro de usuarios
+    async registerUser(@Body() data: User) {
+
+        //saltOrRounds es un argumento para la funcionalidad de hash, debe ser un numero. Buscar Documentacion de bcrypt
+        const saltOrRounds = 12; 
+
+        //Se crea una variable que contenga el valor del password pero encryptado
+        const hashedPassword = await bcrypt.hash( data.password, saltOrRounds);
+
+        //Se asigna ese valor encriptado a la propiedad password del data object
+        data.password = hashedPassword; 
+
+        // Llama al método createUser del servicio registerService y retorna el resultado
+        return this.UserService.createUser(data);
     }
 }
