@@ -28,4 +28,10 @@ export class UserController {
         // Llama al método createUser del servicio registerService y retorna el resultado
         return this.UserService.createUser(data);
     }
+
+    @Post('login')
+    // Metod para manejar la solicitud de login 
+    async loginUser(@Body() data: User){
+        const user = await this.UserService.loginUser(data);
+    }
 }
