@@ -24,7 +24,7 @@ export class UserService{
  
          // Llama al método createUser del servicio registerService y retorna el resultado
         return this.prisma.user.create({
-            data
+            data 
         })
     }
 
@@ -39,10 +39,12 @@ export class UserService{
             throw new BadRequestException('Invalid Credentials')    
         }
 
-        const jwt = await this.jwtService.signAsync({id: user.user_id, name: user.name, lastname: user.last_name, role_Id: user.role_id});
+        const jwt = await this.jwtService.signAsync({id: user.user_id, name: user.name, lastname: user.last_name, role_Id: user.role_id, email: user.email});
 
         return jwt; 
     }
+
+
 
 }
 
