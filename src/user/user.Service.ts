@@ -15,11 +15,9 @@ export class UserService{
 
     async createUser(data: User): Promise<User>{
         data['role_id'] = 1 
-         //saltOrRounds es un argumento para la funcionalidad de hash, debe ser un numero. Buscar Documentacion de bcrypt
-         const saltOrRounds = 12; 
 
          //Se crea una variable que contenga el valor del password pero encryptado
-         const hashedPassword = await bcrypt.hash( data.password, saltOrRounds);
+         const hashedPassword = await bcrypt.hash( data.password, 12);
  
          //Se asigna ese valor encriptado a la propiedad password del data object
          data.password = hashedPassword; 
