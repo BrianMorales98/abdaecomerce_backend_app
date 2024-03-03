@@ -1,9 +1,10 @@
 // Importaciones de módulos y servicios necesarios
 import { UserService } from "./user.service";
 import { User } from "@prisma/client";
-import { Controller, Post, Body, Res, Get, Req } from '@nestjs/common';
+import { Controller, Post, Body, Res, Get, Req, Injectable } from '@nestjs/common';
 import { Response, Request } from 'express';
 
+@Injectable()
 @Controller('api') 
 export class UserController {
 
