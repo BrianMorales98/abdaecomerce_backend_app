@@ -1,4 +1,5 @@
 // Importaciones de módulos y servicios necesarios
+// @ts-ignore 
 import { UserService } from "./User.Service";
 import { User } from "@prisma/client";
 import { Controller, Post, Body, Res, Get, Req, Injectable } from '@nestjs/common';

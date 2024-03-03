@@ -1,5 +1,7 @@
 import {Module} from "@nestjs/common"
+// @ts-ignore 
 import { UserService } from "./User.Service";
+// @ts-ignore 
 import { UserController } from "./User.Controller";
 import { PrismaModule } from "../prisma/prisma.module";
 import { JwtModule } from "@nestjs/jwt";

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+// @ts-ignore 
 import {UserModule} from './user/User.Module'
 
 @Module({
